@@ -53,11 +53,11 @@ bash train.sh 0,1 \
 ```
 
 ```bash
-bash train.sh 1 \
-    --options options/data/cifar100_2-2.yaml options/data/cifar100_order1.yaml options/model/cifar_dytox.yaml \
-    --name dytox \
+bash train.sh 0 \
+    --options options/data/tinyimagenet200_5-5.yaml options/model/tinyimagenet200_dytox.yaml \
+    --name tinyimagenet200 \
     --data-path /home/dkr/data0/datasets \
-    --output-basedir ./checkpoints \
+    --output-basedir ./checkpoints/tinyimagenet200_5-5 \
     --memory-size 1000
 ```
 
