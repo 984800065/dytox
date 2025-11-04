@@ -27,7 +27,8 @@
                 "--name", "tinyimagenet200",
                 "--data-path", "/home/dkr/data0/datasets",
                 "--output-basedir", "./checkpoints/tinyimagenet200_5-5",
-                "--memory-size", "1000"
+                "--memory-size", "1000",
+                "--debug"
             ],
             "env": {
               "CUDA_VISIBLE_DEVICES": "0",
