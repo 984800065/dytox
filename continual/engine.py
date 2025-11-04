@@ -346,6 +346,9 @@ def eval_and_log(args, output_dir, model, model_without_ddp, optimizer, lr_sched
         if cal_avg_acc:
             tmp_avg_acc_item = last_acc_mean
             avg_acc.append(tmp_avg_acc_item)
+
+        avg_acc_mean = np.mean(avg_acc) if len(avg_acc) > 0 else 0
+
         with open(log_path, 'a+') as f:
             f.write(json.dumps({
                 'task': task_id,
@@ -365,6 +368,7 @@ def eval_and_log(args, output_dir, model, model_without_ddp, optimizer, lr_sched
                 "last_acc:": last_acc,
                 "last_acc_mean": last_acc_mean,
                 "avg_acc": avg_acc,
+                "avg_acc_mean": avg_acc_mean,
                 **model_log
             }) + '\n')
     if args.output_dir and utils.is_main_process():

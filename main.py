@@ -755,6 +755,9 @@ def main(args):
 
         nb_classes += args.increment
 
+        if args.debug and task_id >= 3:
+            break
+
     total_time = time.time() - start_time
     total_time_str = str(datetime.timedelta(seconds=int(total_time)))
     print('Training time {}'.format(total_time_str))
