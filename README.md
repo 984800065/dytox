@@ -52,6 +52,15 @@ bash train.sh 0,1 \
     --memory-size 1000
 ```
 
+```bash
+bash train.sh 1 \
+    --options options/data/cifar100_2-2.yaml options/data/cifar100_order1.yaml options/model/cifar_dytox.yaml \
+    --name dytox \
+    --data-path /home/dkr/data0/datasets \
+    --output-basedir ./checkpoints \
+    --memory-size 1000
+```
+
 Folders will be auto-created with the results at
 `logs/cifar/2-2/{DATE}/{DATE}/{DATE}-dytox`.
 
