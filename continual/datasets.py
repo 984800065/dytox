@@ -5,7 +5,7 @@ import os
 import warnings
 
 from continuum import ClassIncremental
-from continuum.datasets import CIFAR100, ImageNet100, ImageFolderDataset
+from continuum.datasets import CIFAR100, ImageNet100, TinyImageNet200, ImageFolderDataset
 from timm.data import create_transform
 from timm.data.constants import IMAGENET_DEFAULT_MEAN, IMAGENET_DEFAULT_STD
 from torchvision import transforms
@@ -96,6 +96,8 @@ def build_dataset(is_train, args):
         )
     elif args.data_set.lower() == 'imagenet1000':
         dataset = ImageNet1000(args.data_path, train=is_train)
+    elif args.data_set.lower() == "tinyimagenet200":
+        dataset = TinyImageNet200(args.data_path, train=is_train)
     else:
         raise ValueError(f'Unknown dataset {args.data_set}.')
 

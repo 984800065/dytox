@@ -5,3 +5,5 @@ logs/
 .vscode
 .ipynb_checkpoints
 
+images/
+*.png

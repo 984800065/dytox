@@ -6,6 +6,7 @@ Train and eval functions used in main.py
 import json
 import os
 import math
+import numpy as np
 from typing import Iterable, Optional
 
 import torch
@@ -302,7 +303,7 @@ def evaluate(data_loader, model, device, logger):
 def eval_and_log(args, output_dir, model, model_without_ddp, optimizer, lr_scheduler,
                  epoch, task_id, loss_scaler, max_accuracy, accuracy_list,
                  n_parameters, device, data_loader_val, train_stats, log_store, log_path, logger,
-                 model_log, skipped_task=False):
+                 model_log, avg_acc: list[float], cal_avg_acc: bool = False, skipped_task=False):
     if args.output_dir:
         if os.path.isdir(args.resume):
             checkpoint_paths = [os.path.join(args.resume, f'checkpoint_{task_id}.pth')]
@@ -340,6 +341,11 @@ def eval_and_log(args, output_dir, model, model_without_ddp, optimizer, lr_sched
         mean_acc5 = sum(all_acc5) / len(all_acc5)
 
     if log_path is not None and utils.is_main_process():
+        last_acc = [round(100 * acc_t, 2) for acc_t in logger.accuracy_per_task]
+        last_acc_mean = np.mean(last_acc)
+        if cal_avg_acc:
+            tmp_avg_acc_item = last_acc_mean
+            avg_acc.append(tmp_avg_acc_item)
         with open(log_path, 'a+') as f:
             f.write(json.dumps({
                 'task': task_id,
@@ -356,6 +362,9 @@ def eval_and_log(args, output_dir, model, model_without_ddp, optimizer, lr_sched
                 'mean_acc5': round(mean_acc5, 2),
                 'train_loss': round(log_stats.get('train_loss', 0.), 5),
                 'test_loss': round(log_stats['test_loss'], 5),
+                "last_acc:": last_acc,
+                "last_acc_mean": last_acc_mean,
+                "avg_acc": avg_acc,
                 **model_log
             }) + '\n')
     if args.output_dir and utils.is_main_process():

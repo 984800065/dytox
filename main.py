@@ -431,6 +431,7 @@ def main(args):
     # --------------------------------------------------------------------------
     dataset_true_val = None
 
+    avg_acc = []
     for task_id, dataset_train in enumerate(scenario_train):
         if args.max_task == task_id:
             print(f"Stop training because of max task")
@@ -619,7 +620,7 @@ def main(args):
                     args, output_dir, model, model_without_ddp, optimizer, lr_scheduler,
                     epoch, task_id, loss_scaler, max_accuracy,
                     [], n_parameters, device, loader_val, train_stats, None, long_log_path,
-                    logger, model_without_ddp.epoch_log()
+                    logger, model_without_ddp.epoch_log(), avg_acc
                 )
                 logger.end_epoch()
 
@@ -738,7 +739,7 @@ def main(args):
                         args, output_dir, model, model_without_ddp, optimizer, lr_scheduler,
                         epoch, task_id, loss_scaler, max_accuracy,
                         [], n_parameters, device, loader_val, train_stats, None, long_log_path,
-                        logger, model_without_ddp.epoch_log()
+                        logger, model_without_ddp.epoch_log(), avg_acc
                     )
                     logger.end_epoch()
 
@@ -748,7 +749,7 @@ def main(args):
             args, output_dir, model, model_without_ddp, optimizer, lr_scheduler,
             epoch, task_id, loss_scaler, max_accuracy,
             accuracy_list, n_parameters, device, loader_val, train_stats, log_store, log_path,
-            logger, model_without_ddp.epoch_log(), skipped_task
+            logger, model_without_ddp.epoch_log(), avg_acc, True, skipped_task
         )
         logger.end_task()
 
