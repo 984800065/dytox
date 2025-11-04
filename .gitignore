@@ -2,7 +2,6 @@
 **/__pycache__/**
 checkpoints/
 logs/
-.vscode
 .ipynb_checkpoints
 
 images/

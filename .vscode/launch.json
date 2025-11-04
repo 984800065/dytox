@@ -1,0 +1,39 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+
+        {
+            "name": "Python Debugger: Current File",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal"
+        },
+        {
+            "name": "Debug Distributed Training",
+            "type": "python",
+            "request": "launch",
+            "module": "torch.distributed.launch",
+            "args": [
+                "--master_port", "9999",
+                "--nproc_per_node", "1",
+                "main.py",
+                "--options",
+                "options/data/tinyimagenet200_5-5.yaml",
+                "options/model/tinyimagenet200_dytox.yaml",
+                "--name", "tinyimagenet200",
+                "--data-path", "/home/dkr/data0/datasets",
+                "--output-basedir", "./checkpoints/tinyimagenet200_5-5",
+                "--memory-size", "1000"
+            ],
+            "env": {
+              "CUDA_VISIBLE_DEVICES": "0",
+              "PYTHONUNBUFFERED": "1"
+            },
+            "console": "integratedTerminal"
+        }
+    ]
+}
