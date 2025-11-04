@@ -86,17 +86,17 @@ class INatDataset(ImageFolder):
 
 def build_dataset(is_train, args):
     transform = build_transform(is_train, args)
-
-    if args.data_set.lower() == 'cifar':
+    chosed_dataset = args.data_set.lower()
+    if chosed_dataset == 'cifar':
         dataset = CIFAR100(args.data_path, train=is_train, download=True)
-    elif args.data_set.lower() == 'imagenet100':
+    elif chosed_dataset == 'imagenet100':
         dataset = ImageNet100(
             args.data_path, train=is_train,
             data_subset=os.path.join('./imagenet100_splits', "train_100.txt" if is_train else "val_100.txt")
         )
-    elif args.data_set.lower() == 'imagenet1000':
+    elif chosed_dataset == 'imagenet1000':
         dataset = ImageNet1000(args.data_path, train=is_train)
-    elif args.data_set.lower() == "tinyimagenet200":
+    elif chosed_dataset == "tinyimagenet200":
         dataset = TinyImageNet200(args.data_path, train=is_train)
     else:
         raise ValueError(f'Unknown dataset {args.data_set}.')
