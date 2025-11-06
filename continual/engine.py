@@ -371,6 +371,8 @@ def eval_and_log(args, output_dir, model, model_without_ddp, optimizer, lr_sched
                 "avg_acc_mean": avg_acc_mean,
                 **model_log
             }) + '\n')
+        
+        print(f"Task {task_id} avg_acc: {avg_acc}, avg_acc_mean: {avg_acc_mean}, last_acc: {last_acc}, last_acc_mean: {last_acc_mean}")
     if args.output_dir and utils.is_main_process():
         with (output_dir / "log.txt").open("a") as f:
             f.write(json.dumps(log_stats) + "\n")

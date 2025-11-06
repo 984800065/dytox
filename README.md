@@ -53,7 +53,7 @@ bash train.sh 0,1 \
 ```
 
 ```bash
-bash train.sh 0 \
+bash train.sh 0,1 \
     --options options/data/tinyimagenet200_5-5.yaml options/model/tinyimagenet200_dytox.yaml \
     --name tinyimagenet200 \
     --data-path /home/dkr/data0/datasets \

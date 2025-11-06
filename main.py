@@ -35,7 +35,6 @@ from continual.losses import bce_with_logits, soft_bce_with_logits
 
 warnings.filterwarnings("ignore")
 
-
 def get_args_parser():
     parser = argparse.ArgumentParser('DyTox training and evaluation script', add_help=False)
     parser.add_argument('--batch-size', default=128, type=int)
