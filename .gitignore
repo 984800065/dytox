@@ -1,7 +1,6 @@
 *.swp
 **/__pycache__/**
 checkpoints/
-logs/
 .ipynb_checkpoints
 
 images/

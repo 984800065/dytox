@@ -40,8 +40,8 @@ def get_args_parser():
     parser = argparse.ArgumentParser('DyTox training and evaluation script', add_help=False)
     parser.add_argument('--batch-size', default=128, type=int)
     parser.add_argument('--incremental-batch-size', default=None, type=int)
-    parser.add_argument('--epochs', default=500, type=int)
-    parser.add_argument('--base-epochs', default=500, type=int,
+    parser.add_argument('--epochs', default=30, type=int)
+    parser.add_argument('--base-epochs', default=50, type=int,
                         help='Number of epochs for base task')
     parser.add_argument('--no-amp', default=False, action='store_true',
                         help='Disable mixed precision')

@@ -56,7 +56,7 @@ bash train.sh 0,1 \
 bash train.sh 0 \
     --options options/data/tinyimagenet200_5-5.yaml options/model/tinyimagenet200_dytox.yaml \
     --name tinyimagenet200 \
-    --data-path /home/dkr/data0/datasets \
+    --data-path /home/lc/data0/datasets \
     --output-basedir ./checkpoints/tinyimagenet200_5-5 \
     --memory-size 1000
 ```
